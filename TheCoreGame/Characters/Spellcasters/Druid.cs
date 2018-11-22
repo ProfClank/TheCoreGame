@@ -1,16 +1,28 @@
 ﻿using System;
 using TheCoreGame.Armors.Leather;
+using TheCoreGame.Characters.Enumerations;
 using TheCoreGame.Weapons.Sharp;
 
 namespace TheCoreGame.Characters.Spellcasters
 {
     public class Druid
     {
+        private const Faction DefaultFaction = Faction.Spellcasters;
+
+        private const int DefaultLevel = 1;
+        private const int DefaultAbilityPoints = 15;
+        private const int DefaultHealthPoints = 100;
+
+        private const string DefaultName = "Druid";
+
+        private readonly LeatherVest _defaultBodyArmor = new LeatherVest();
+        private readonly Sword _defaultWeapon = new Sword();
+
         private int _abilityPoints;
         private int _healthPoints;
         private int _level;
 
-        private string _faction;
+        private Faction _faction;
         private string _name;
 
         private LeatherVest _bodyArmor;
@@ -76,7 +88,7 @@ namespace TheCoreGame.Characters.Spellcasters
             }
         }
 
-        public string Faction
+        public Faction Faction
         {
             get
             {
@@ -84,15 +96,7 @@ namespace TheCoreGame.Characters.Spellcasters
             }
             set
             {
-                if (value == "Spellcasters" || value == "Melee")
-                {
-                    _faction = value;
-                }
-                else
-                {
-                    Console.WriteLine("Faction should be Spellcasters or Melee");
-                    _faction = "Spellcasters";
-                }
+                _faction = value;
             }
         }
 
@@ -142,36 +146,26 @@ namespace TheCoreGame.Characters.Spellcasters
 
 
         public Druid()
+            : this(DefaultName, DefaultLevel)
         {
-            _abilityPoints = 15;
-            _healthPoints = 100;
-            _level = 1;
-            _faction = "Melee";
-            _name = "Bobbert";
-            _bodyArmor = new LeatherVest();
-            _weapon = new Sword();
+
         }
 
         public Druid(string name, int level)
+            : this(name, level, DefaultAbilityPoints)
         {
-            _abilityPoints = 15;
-            _healthPoints = 100;
-            _level = level;
-            _faction = "Melee";
-            _name = name;
-            _bodyArmor = new LeatherVest();
-            _weapon = new Sword();
+
         }
 
         public Druid(string name, int level, int abilityPoints)
         {
             _abilityPoints = abilityPoints;
-            _healthPoints = 100;
+            _healthPoints = DefaultHealthPoints;
             _level = level;
-            _faction = "Melee";
+            _faction = DefaultFaction;
             _name = name;
-            _bodyArmor = new LeatherVest();
-            _weapon = new Sword();
+            _bodyArmor = _defaultBodyArmor;
+            _weapon = _defaultWeapon;
         }
 
         public void Moonfire()

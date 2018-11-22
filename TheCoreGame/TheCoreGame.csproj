@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Characters\Melees\Assassin.cs" />
+    <Compile Include="Characters\Enumerations\Faction.cs" />
+    <Compile Include="InfoHandler.cs" />
     <Compile Include="Weapons\Sharp\Axe.cs" />
     <Compile Include="Armors\Mail\ChainLink.cs" />
     <Compile Include="Armors\Cloth\ClothRobe.cs" />
