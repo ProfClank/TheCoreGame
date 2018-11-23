@@ -18,32 +18,6 @@ namespace TheCoreGame.Characters.Spellcasters
         private readonly LeatherVest _defaultBodyArmor = new LeatherVest();
         private readonly Sword _defaultWeapon = new Sword();
 
-        private LeatherVest _bodyArmor;
-        private Sword _weapon;
-
-        public LeatherVest BodyArmor
-        {
-            get
-            {
-                return _bodyArmor;
-            }
-            set
-            {
-                _bodyArmor = value;
-            }
-        }
-        public Sword Weapon
-        {
-            get
-            {
-                return _weapon;
-            }
-            set
-            {
-                _weapon = value;
-            }
-        }
-
         public Necromancer()
             : this(DefaultName, DefaultLevel)
         {
@@ -57,12 +31,10 @@ namespace TheCoreGame.Characters.Spellcasters
         }
 
         public Necromancer(string name, int level, int manaPoints)
+            : base(name, level, manaPoints)
         {
-            ManaPoints = manaPoints;
             HealthPoints = DefaultHealthPoints;
-            Level = level;
             Faction = DefaultFaction;
-            Name = name;
             BodyArmor = _defaultBodyArmor;
             Weapon = _defaultWeapon;
         }
@@ -80,6 +52,21 @@ namespace TheCoreGame.Characters.Spellcasters
         public void BoneShield()
         {
             throw new NotImplementedException();
+        }
+
+        public override void Attack()
+        {
+            ShadowRage();
+        }
+
+        public override void SpecialAttack()
+        {
+            VampireTouch();
+        }
+
+        public override void Defend()
+        {
+            BoneShield();
         }
     }
 }

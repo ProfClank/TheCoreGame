@@ -2,7 +2,7 @@
 
 namespace TheCoreGame.Weapons
 {
-    public class Weapon
+    public abstract class Weapon
     {
         private int _damage;
 
@@ -24,6 +24,11 @@ namespace TheCoreGame.Weapons
                     _damage = 1;
                 }
             }
+        }
+
+        protected Weapon()
+        {
+            Damage = 10;
         }
     }
 }

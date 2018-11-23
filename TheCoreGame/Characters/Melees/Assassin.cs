@@ -18,32 +18,6 @@ namespace TheCoreGame.Characters.Melees
         private readonly LeatherVest _defaultBodyArmor = new LeatherVest();
         private readonly Sword _defaultWeapon = new Sword();
 
-        private LeatherVest _bodyArmor;
-        private Sword _weapon;
-
-        public LeatherVest BodyArmor
-        {
-            get
-            {
-                return _bodyArmor;
-            }
-            set
-            {
-                _bodyArmor = value;
-            }
-        }
-        public Sword Weapon
-        {
-            get
-            {
-                return _weapon;
-            }
-            set
-            {
-                _weapon = value;
-            }
-        }
-
         public Assassin()
             : this(DefaultName, DefaultLevel)
         {
@@ -57,12 +31,10 @@ namespace TheCoreGame.Characters.Melees
         }
 
         public Assassin(string name, int level, int abilityPoints)
+            : base(name, level, abilityPoints)
         {
-            AbilityPoints = abilityPoints;
             HealthPoints = DefaultHealthPoints;
-            Level = level;
             Faction = DefaultFaction;
-            Name = name;
             BodyArmor = _defaultBodyArmor;
             Weapon = _defaultWeapon;
         }
@@ -80,6 +52,21 @@ namespace TheCoreGame.Characters.Melees
         public void Survival()
         {
             throw new NotImplementedException();
+        }
+
+        public override void Attack()
+        {
+            Raze();
+        }
+
+        public override void SpecialAttack()
+        {
+            Bleed();
+        }
+
+        public override void Defend()
+        {
+            Survival();
         }
     }
 }

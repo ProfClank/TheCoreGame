@@ -1,85 +1,65 @@
 ﻿using System;
 using TheCoreGame.Armors.Cloth;
-using TheCoreGame.Characters.Enumerations;
 using TheCoreGame.Weapons.Blunt;
 
 namespace TheCoreGame.Characters.Spellcasters
 {
     public class Mage : Spellcaster
     {
-        private const Faction DefaultFaction = Faction.Spellcasters;
-
-        private const int DefaultLevel = 1;
-        private const int DefaultManaPoints = 20;
-        private const int DefaultHealthPoints = 100;
-
-        private const string DefaultName = "Mage";
-
         private readonly ClothRobe _defaultBodyArmor = new ClothRobe();
         private readonly Staff _defaultWeapon = new Staff();
 
-        private ClothRobe _bodyArmor;
-        private Staff _weapon;
-
-        public ClothRobe BodyArmor
-        {
-            get
-            {
-                return _bodyArmor;
-            }
-            set
-            {
-                _bodyArmor = value;
-            }
-        }
-        public Staff Weapon
-        {
-            get
-            {
-                return _weapon;
-            }
-            set
-            {
-                _weapon = value;
-            }
-        }
-
         public Mage()
-            : this(DefaultName, DefaultLevel)
+            : this(Consts.Mage.DefaultName, Consts.Mage.DefaultLevel)
         {
 
         }
 
         public Mage(string name, int level)
-            : this(name, level, DefaultManaPoints)
+            : this(name, level, Consts.Mage.DefaultManaPoints)
         {
 
         }
 
         public Mage(string name, int level, int manaPoints)
+            : base(name, level, manaPoints)
         {
-            ManaPoints = manaPoints;
-            HealthPoints = DefaultHealthPoints;
-            Level = level;
-            Faction = DefaultFaction;
-            Name = name;
+            HealthPoints = Consts.Mage.DefaultHealthPoints;
+            Faction = Consts.Mage.DefaultFaction;
             BodyArmor = _defaultBodyArmor;
             Weapon = _defaultWeapon;
+            IsAlive = true;
+            Score = 0;
         }
 
-        public void ArcaneWrath()
+        public int ArcaneWrath()
+        {
+            return Weapon.Damage + 10;
+        }
+
+        public int Firewall()
         {
             throw new NotImplementedException();
         }
 
-        public void Firewall()
+        public int Meditation()
         {
-            throw new NotImplementedException();
+            return BodyArmor.ArmorPoints + 5;
         }
 
-        public void Meditation()
+        public override int Attack()
         {
-            throw new NotImplementedException();
+            return ArcaneWrath();
+        }
+
+        public override int SpecialAttack()
+        {
+            return Firewall();
+        }
+
+        public override int Defend()
+        {
+            return Meditation();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TheCoreGame.Characters.Spellcasters
 {
-    public class Spellcaster : Character
+    public abstract class Spellcaster : Character
     {
         private int _manaPoints;
 
@@ -24,6 +24,14 @@ namespace TheCoreGame.Characters.Spellcasters
                     _manaPoints = 1;
                 }
             }
+        }
+
+        protected Spellcaster(string name, int level, int manaPoints)
+            : base(name, level)
+        {
+            ManaPoints = manaPoints;
+            Level = level;
+            Name = name;
         }
     }
 }

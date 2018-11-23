@@ -5,8 +5,9 @@ namespace TheCoreGame.Weapons.Sharp
     public class Axe : Sharp
     {
         public Axe()
+            : base()
         {
-            Damage = 10;
+
         }
 
         public void HackNSlash()

@@ -18,32 +18,6 @@ namespace TheCoreGame.Characters.Melees
         private readonly ChainLink _defaultBodyArmor = new ChainLink();
         private readonly Hammer _defaultWeapon = new Hammer();
 
-        private ChainLink _bodyArmor;
-        private Hammer _weapon;
-
-        public ChainLink BodyArmor
-        {
-            get
-            {
-                return _bodyArmor;
-            }
-            set
-            {
-                _bodyArmor = value;
-            }
-        }
-        public Hammer Weapon
-        {
-            get
-            {
-                return _weapon;
-            }
-            set
-            {
-                _weapon = value;
-            }
-        }
-
         public Knight()
             : this(DefaultName, DefaultLevel)
         {
@@ -57,12 +31,10 @@ namespace TheCoreGame.Characters.Melees
         }
 
         public Knight(string name, int level, int abilityPoints)
+            : base(name, level, abilityPoints)
         {
-            AbilityPoints = abilityPoints;
             HealthPoints = DefaultHealthPoints;
-            Level = level;
             Faction = DefaultFaction;
-            Name = name;
             BodyArmor = _defaultBodyArmor;
             Weapon = _defaultWeapon;
         }
@@ -80,6 +52,21 @@ namespace TheCoreGame.Characters.Melees
         public void RighteousWings()
         {
             throw new NotImplementedException();
+        }
+
+        public override void Attack()
+        {
+            HolyBlow();
+        }
+
+        public override void SpecialAttack()
+        {
+            PurifySoul();
+        }
+
+        public override void Defend()
+        {
+            RighteousWings();
         }
     }
 }
